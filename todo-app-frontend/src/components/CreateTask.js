@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../axiosInstance';  // Import axios instance
 
 const CreateTask = ({ token }) => {
   const [title, setTitle] = useState('');
@@ -9,8 +9,8 @@ const CreateTask = ({ token }) => {
   const handleCreateTask = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        'http://localhost:5001/api/tasks',
+      const response = await axiosInstance.post(
+        '/tasks',
         { title, description },
         { headers: { Authorization: `Bearer ${token}` } }
       );

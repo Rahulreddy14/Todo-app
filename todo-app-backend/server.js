@@ -17,9 +17,24 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
 const app = express(); // Initializing an Express application
-
-app.use(cors({
-    origin: 'http://localhost:3000'  // Allow requests from your React frontend
+// List of allowed origins (development and production domains)
+const allowedOrigins = [
+    'http://localhost:3000',   // For local development (React on localhost)
+    'https://your-vercel-app.vercel.app',  // Replace with your Vercel frontend URL
+  ];
+  
+  // CORS configuration
+  app.use(cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true,  // Allows cookies and HTTP authentication
   }));
 
 // Function to generate a JWT token

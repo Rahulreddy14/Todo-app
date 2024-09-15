@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';  // Import useNavigate for redirection
-import axios from 'axios';
+import axiosInstance from '../axiosInstance';  // Adjust the path based on your file structure
+
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -12,7 +13,7 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5001/api/users/signup', {
+      await axiosInstance.post('/users/signup', {
         username,
         email,
         password,

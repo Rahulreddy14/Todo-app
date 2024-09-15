@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../axiosInstance';  
 
 const TaskList = ({ token }) => {
   const [tasks, setTasks] = useState([]);
@@ -12,7 +12,7 @@ const TaskList = ({ token }) => {
   // Fetch tasks when the component mounts
   const fetchTasks = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/tasks', {
+      const response = await axiosInstance.get('/tasks', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTasks(response.data);
@@ -29,8 +29,8 @@ const TaskList = ({ token }) => {
   const handleCreateTask = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        'http://localhost:5001/api/tasks',
+      await axiosInstance.post(
+        '/tasks',
         { title: newTaskTitle, description: newTaskDescription },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -45,8 +45,8 @@ const TaskList = ({ token }) => {
   // Edit a task
   const handleEditTask = async (taskId) => {
     try {
-      await axios.put(
-        `http://localhost:5001/api/tasks/${taskId}`,
+      await await axiosInstance.put(
+        `/tasks/${taskId}`,
         { title: editTitle, description: editDescription },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -60,7 +60,7 @@ const TaskList = ({ token }) => {
   // Delete a task
   const handleDeleteTask = async (taskId) => {
     try {
-      await axios.delete(`http://localhost:5001/api/tasks/${taskId}`, {
+      await  await axiosInstance.delete(`/tasks/${taskId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchTasks();  // Fetch tasks again after deleting

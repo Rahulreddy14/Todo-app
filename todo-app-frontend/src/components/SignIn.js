@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';  // Import Link for navigation
-import axios from 'axios';
+import axiosInstance from '../axiosInstance';  // Adjust the path based on your file structure
+
 
 const SignIn = ({ setToken }) => {
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const SignIn = ({ setToken }) => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/users/signin', {
+      const response = await axiosInstance.post('/users/signin', {
         email,
         password,
       });
