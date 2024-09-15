@@ -209,3 +209,5 @@ app.delete("/api/tasks/:id", protect, async (req, res) => {
         res.status(500).json({ message: error.message }) ; 
     }
 }) ; 
+
+module.exports = app;
