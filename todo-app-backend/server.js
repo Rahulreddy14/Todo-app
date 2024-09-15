@@ -20,7 +20,7 @@ const app = express(); // Initializing an Express application
 // List of allowed origins (development and production domains)
 const allowedOrigins = [
     'http://localhost:3000',   // For local development (React on localhost)
-    'https://your-vercel-app.vercel.app',  // Replace with your Vercel frontend URL
+    'https://todo-app-sigma-six-26.vercel.app',  // Replace with your Vercel frontend URL
   ];
   
   // CORS configuration
