@@ -25,6 +25,20 @@ const TaskList = ({ token }) => {
     fetchTasks(); // Fetch tasks when component mounts
   }, [token]);
 
+  // Toggle task completion status
+  const toggleTaskCompletion = async (taskId, completed) => {
+    try {
+      await axiosInstance.put(
+        `/tasks/${taskId}`,
+        { completed: !completed },  // Toggle completed status
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      fetchTasks();  // Refresh tasks after updating
+    } catch (error) {
+      console.error('Error updating task status:', error);
+    }
+  };
+
   // Create a new task
   const handleCreateTask = async (e) => {
     e.preventDefault();
@@ -77,8 +91,8 @@ const TaskList = ({ token }) => {
   };
 
   return (
-    <div className="min-h-screen bg-dark p-6">
-      <h1 className="text-4xl font-bold text-white mb-8">Your Tasks</h1>
+    <div className="min-h-screen bg-black p-6">
+      <h1 className="text-4xl font-bold text-white mb-8 text-center">Your Tasks</h1>
 
       {/* Task creation form */}
       <form onSubmit={handleCreateTask} className="mb-8 flex flex-col items-center">
@@ -109,7 +123,7 @@ const TaskList = ({ token }) => {
         {tasks.map((task) => (
           <li
             key={task._id}
-            className="bg-gray-800 p-4 rounded-lg flex justify-between items-center"
+            className="bg-gray-800 p-4 rounded-lg flex justify-between items-center text-white"
           >
             {editingTaskId === task._id ? (
               <div className="flex flex-col w-full">
@@ -147,7 +161,7 @@ const TaskList = ({ token }) => {
                   <input
                     type="checkbox"
                     checked={task.completed}
-                    onChange={() => toggleTaskCompletion(task._id)}
+                    onChange={() => toggleTaskCompletion(task._id, task.completed)} // Updated call to toggleTaskCompletion
                     className="h-6 w-6 rounded-full border-gray-400 focus:ring-red-500"
                   />
                   <span className={`ml-4 ${task.completed ? 'line-through text-gray-500' : ''}`}>
