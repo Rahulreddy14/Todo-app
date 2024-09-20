@@ -12,7 +12,7 @@ const NavBar = ({ token, setToken, username = "Username" }) => {
   };
 
   return (
-    <div className="flex flex-col w-1/5 h-screen bg-gray-900 text-white p-4">
+    <div className="flex flex-col w-1/5 h-screen bg-gray-900 text-white p-6">
       {/* Username Display */}
       <div className="flex items-center mb-8">
         <div className="bg-gray-800 p-3 rounded-full">
@@ -24,7 +24,8 @@ const NavBar = ({ token, setToken, username = "Username" }) => {
         </div>
       </div>
 
-      <nav className="space-y-4">
+      {/* Vertical Stacking of Sidebar Items */}
+      <nav className="flex flex-col space-y-4">  {/* Ensure vertical stacking with flex-col */}
         <Link to="/tasks" className="text-sm hover:text-red-500 transition-all">
           Today
         </Link>
