@@ -45,7 +45,7 @@ const TaskList = ({ token }) => {
   // Edit a task
   const handleEditTask = async (taskId) => {
     try {
-      await await axiosInstance.put(
+      await axiosInstance.put(
         `/tasks/${taskId}`,
         { title: editTitle, description: editDescription },
         { headers: { Authorization: `Bearer ${token}` } }
@@ -60,7 +60,7 @@ const TaskList = ({ token }) => {
   // Delete a task
   const handleDeleteTask = async (taskId) => {
     try {
-      await  await axiosInstance.delete(`/tasks/${taskId}`, {
+      await axiosInstance.delete(`/tasks/${taskId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchTasks();  // Fetch tasks again after deleting
@@ -77,8 +77,8 @@ const TaskList = ({ token }) => {
   };
 
   return (
-    <div className="min-h-screen bg-black p-6">
-      <h1 className="text-4xl font-bold text-white mb-8 text-center">Your Tasks</h1>
+    <div className="min-h-screen bg-dark p-6">
+      <h1 className="text-4xl font-bold text-white mb-8">Your Tasks</h1>
 
       {/* Task creation form */}
       <form onSubmit={handleCreateTask} className="mb-8 flex flex-col items-center">
@@ -109,7 +109,7 @@ const TaskList = ({ token }) => {
         {tasks.map((task) => (
           <li
             key={task._id}
-            className="bg-gray-800 p-4 rounded-lg flex justify-between items-center text-white"
+            className="bg-gray-800 p-4 rounded-lg flex justify-between items-center"
           >
             {editingTaskId === task._id ? (
               <div className="flex flex-col w-full">
@@ -142,7 +142,18 @@ const TaskList = ({ token }) => {
               </div>
             ) : (
               <div className="flex justify-between items-center w-full">
-                <span className="text-xl">{task.title} - {task.description}</span>
+                <div className="flex items-center">
+                  {/* Rounded Checkbox */}
+                  <input
+                    type="checkbox"
+                    checked={task.completed}
+                    onChange={() => toggleTaskCompletion(task._id)}
+                    className="h-6 w-6 rounded-full border-gray-400 focus:ring-red-500"
+                  />
+                  <span className={`ml-4 ${task.completed ? 'line-through text-gray-500' : ''}`}>
+                    {task.title} - {task.description}
+                  </span>
+                </div>
                 <div className="flex space-x-4">
                   <button
                     onClick={() => handleEditClick(task)}

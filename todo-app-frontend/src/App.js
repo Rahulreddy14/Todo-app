@@ -8,8 +8,6 @@ import NavBar from './components/NavBar';
 import './App.css';
 import './tailwind.css';
 
-
-
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token') || '');  // Load token from localStorage if available
 
@@ -22,23 +20,25 @@ const App = () => {
 
   return (
     <Router>
-      <div>
+      <div className="flex min-h-screen">
         
         {/* Show navigation only if the user is logged in */}
         {token && <NavBar token={token} setToken={setToken} />}
-        
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn setToken={setToken} />} />
 
-          {/* Protected Routes - Only render if the user is logged in */}
-          <Route path="/tasks" element={token ? <TaskList token={token} /> : <SignIn setToken={setToken} />} />
-          <Route path="/create-task" element={token ? <CreateTask token={token} /> : <SignIn setToken={setToken} />} />
+        <div className="w-full p-8">
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn setToken={setToken} />} />
 
-          {/* Default route */}
-          <Route path="/" element={token ? <TaskList token={token} /> : <SignIn setToken={setToken} />} />
-        </Routes>
+            {/* Protected Routes - Only render if the user is logged in */}
+            <Route path="/tasks" element={token ? <TaskList token={token} /> : <SignIn setToken={setToken} />} />
+            <Route path="/create-task" element={token ? <CreateTask token={token} /> : <SignIn setToken={setToken} />} />
+
+            {/* Default route */}
+            <Route path="/" element={token ? <TaskList token={token} /> : <SignIn setToken={setToken} />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );
