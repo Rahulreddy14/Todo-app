@@ -10,6 +10,7 @@ import './tailwind.css';
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token') || '');  // Load token from localStorage if available
+  const [username, setUsername] = useState("rahul5959red");  // Simulating username
 
   // Sync token with localStorage
   useEffect(() => {
@@ -20,12 +21,11 @@ const App = () => {
 
   return (
     <Router>
-      <div className="flex min-h-screen">
-        
+      <div className="flex h-screen">
         {/* Show navigation only if the user is logged in */}
-        {token && <NavBar token={token} setToken={setToken} />}
-
-        <div className="w-full p-8">
+        {token && <NavBar token={token} setToken={setToken} username={username} />}
+        
+        <div className="w-full p-6 bg-black overflow-auto">
           <Routes>
             {/* Public Routes */}
             <Route path="/signup" element={<SignUp />} />
