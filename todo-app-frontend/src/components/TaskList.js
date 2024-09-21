@@ -7,6 +7,8 @@ const TaskList = ({ token }) => {
   const [editingTaskId, setEditingTaskId] = useState(null);
   const [editTitle, setEditTitle] = useState('');
   const [editDescription, setEditDescription] = useState('');
+  const [newTaskTitle, setNewTaskTitle] = useState('');  // Defined the missing state
+  const [newTaskDescription, setNewTaskDescription] = useState('');  // Defined the missing state
   const [showForm, setShowForm] = useState(false);  // Control to show/hide form
 
   // Fetch tasks when the component mounts
@@ -36,6 +38,24 @@ const TaskList = ({ token }) => {
       fetchTasks();  // Refresh tasks after updating
     } catch (error) {
       console.error('Error updating task status:', error);
+    }
+  };
+
+  // Handle creating a new task
+  const handleCreateTask = async (e) => {
+    e.preventDefault();
+    try {
+      await axiosInstance.post(
+        '/tasks',
+        { title: newTaskTitle, description: newTaskDescription },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setNewTaskTitle('');  // Clear form fields after task creation
+      setNewTaskDescription('');
+      setShowForm(false);  // Hide form after successful creation
+      fetchTasks();  // Refresh tasks list
+    } catch (error) {
+      console.error('Error creating task:', error);
     }
   };
 

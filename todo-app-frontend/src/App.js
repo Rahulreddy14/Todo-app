@@ -33,8 +33,6 @@ const App = () => {
 
             {/* Protected Routes - Only render if the user is logged in */}
             <Route path="/tasks" element={token ? <TaskList token={token} /> : <SignIn setToken={setToken} />} />
-            <Route path="/create-task" element={token ? <CreateTask token={token} /> : <SignIn setToken={setToken} />} />
-
             {/* Default route */}
             <Route path="/" element={token ? <TaskList token={token} /> : <SignIn setToken={setToken} />} />
           </Routes>
