@@ -12,12 +12,11 @@ const NavBar = ({ token, setToken, username = "Username" }) => {
   };
 
   return (
-    <div className="flex flex-col w-1/5 h-screen bg-gray-200 text-black p-6">
+    <div className="flex flex-col w-1/5 h-screen bg-gray-800 text-white p-6">  {/* Adjusted the color */}
       {/* Username Display */}
       <div className="flex items-center mb-8">
-        <div className="bg-gray-300 p-3 rounded-full">
-          {/* Initials or Profile Icon */}
-          <span className="text-lg font-bold text-black">{username.charAt(0).toUpperCase()}</span>
+        <div className="bg-gray-700 p-3 rounded-full">
+          <span className="text-lg font-bold text-white">{username.charAt(0).toUpperCase()}</span>
         </div>
         <div className="ml-4">
           <span className="text-lg font-bold">{username}</span>
@@ -29,13 +28,13 @@ const NavBar = ({ token, setToken, username = "Username" }) => {
         <Link to="/tasks" className="text-sm hover:text-green-500 transition-all">
           Today
         </Link>
-        <Link to="/upcoming" className="text-sm hover:text-green-500 transition-all">
+        <Link to="/tasks" className="text-sm hover:text-green-500 transition-all">
           Upcoming
         </Link>
-        <Link to="/completed" className="text-sm hover:text-green-500 transition-all">
+        <Link to="/tasks" className="text-sm hover:text-green-500 transition-all">
           Completed
         </Link>
-        <Link to="/projects" className="text-sm hover:text-green-500 transition-all">
+        <Link to="/tasks" className="text-sm hover:text-green-500 transition-all">
           My Projects
         </Link>
       </nav>
