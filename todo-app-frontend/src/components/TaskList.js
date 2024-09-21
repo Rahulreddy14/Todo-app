@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from '../axiosInstance';  
+import axiosInstance from '../axiosInstance';
+import { FaPencilAlt, FaTrash, FaCheck } from 'react-icons/fa';  // Importing icons
 
 const TaskList = ({ token }) => {
   const [tasks, setTasks] = useState([]);
-  const [newTaskTitle, setNewTaskTitle] = useState('');
-  const [newTaskDescription, setNewTaskDescription] = useState('');
   const [editingTaskId, setEditingTaskId] = useState(null);
   const [editTitle, setEditTitle] = useState('');
   const [editDescription, setEditDescription] = useState('');
@@ -36,23 +35,6 @@ const TaskList = ({ token }) => {
       fetchTasks();  // Refresh tasks after updating
     } catch (error) {
       console.error('Error updating task status:', error);
-    }
-  };
-
-  // Create a new task
-  const handleCreateTask = async (e) => {
-    e.preventDefault();
-    try {
-      await axiosInstance.post(
-        '/tasks',
-        { title: newTaskTitle, description: newTaskDescription },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setNewTaskTitle('');  // Clear the form
-      setNewTaskDescription('');
-      fetchTasks();  // Fetch tasks again after creating a new one
-    } catch (error) {
-      console.error('Error creating task:', error);
     }
   };
 
@@ -91,32 +73,8 @@ const TaskList = ({ token }) => {
   };
 
   return (
-    <div className="min-h-screen bg-black p-6">
+    <div className="min-h-screen bg-dark-gray p-6">
       <h1 className="text-4xl font-bold text-white mb-8 text-center">Your Tasks</h1>
-
-      {/* Task creation form */}
-      <form onSubmit={handleCreateTask} className="mb-8 flex flex-col items-center">
-        <input
-          type="text"
-          placeholder="New task title"
-          value={newTaskTitle}
-          onChange={(e) => setNewTaskTitle(e.target.value)}
-          className="w-full max-w-lg px-4 py-3 mb-4 text-lg bg-gray-800 text-white border border-red-500 rounded-md focus:outline-none focus:ring-4 focus:ring-red-600"
-        />
-        <input
-          type="text"
-          placeholder="New task description"
-          value={newTaskDescription}
-          onChange={(e) => setNewTaskDescription(e.target.value)}
-          className="w-full max-w-lg px-4 py-3 mb-4 text-lg bg-gray-800 text-white border border-red-500 rounded-md focus:outline-none focus:ring-4 focus:ring-red-600"
-        />
-        <button
-          type="submit"
-          className="w-full max-w-lg py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition-all"
-        >
-          Create Task
-        </button>
-      </form>
 
       {/* Task list */}
       <ul className="space-y-4">
@@ -131,26 +89,26 @@ const TaskList = ({ token }) => {
                   type="text"
                   value={editTitle}
                   onChange={(e) => setEditTitle(e.target.value)}
-                  className="w-full px-4 py-2 mb-2 bg-gray-700 text-white border border-red-500 rounded-md focus:outline-none focus:ring-4 focus:ring-red-600"
+                  className="w-full px-4 py-2 mb-2 bg-gray-700 text-white border border-green-500 rounded-md focus:outline-none focus:ring-4 focus:ring-green-600"
                 />
                 <input
                   type="text"
                   value={editDescription}
                   onChange={(e) => setEditDescription(e.target.value)}
-                  className="w-full px-4 py-2 mb-4 bg-gray-700 text-white border border-red-500 rounded-md focus:outline-none focus:ring-4 focus:ring-red-600"
+                  className="w-full px-4 py-2 mb-4 bg-gray-700 text-white border border-green-500 rounded-md focus:outline-none focus:ring-4 focus:ring-green-600"
                 />
                 <div className="flex justify-end space-x-4">
                   <button
                     onClick={() => handleEditTask(task._id)}
-                    className="py-2 px-4 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-all"
+                    className="p-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-all"
                   >
-                    Save
+                    <FaCheck /> {/* Save Icon */}
                   </button>
                   <button
                     onClick={() => setEditingTaskId(null)}
-                    className="py-2 px-4 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition-all"
+                    className="p-2 bg-gray-600 text-white font-semibold rounded-md hover:bg-gray-700 transition-all"
                   >
-                    Cancel
+                    <FaTrash /> {/* Cancel/Delete Icon */}
                   </button>
                 </div>
               </div>
@@ -161,8 +119,8 @@ const TaskList = ({ token }) => {
                   <input
                     type="checkbox"
                     checked={task.completed}
-                    onChange={() => toggleTaskCompletion(task._id, task.completed)} // Updated call to toggleTaskCompletion
-                    className="h-6 w-6 rounded-full border-gray-400 focus:ring-red-500"
+                    onChange={() => toggleTaskCompletion(task._id, task.completed)}
+                    className="h-6 w-6 rounded-full border-gray-400 focus:ring-green-500"
                   />
                   <span className={`ml-4 ${task.completed ? 'line-through text-gray-500' : ''}`}>
                     {task.title} - {task.description}
@@ -171,15 +129,15 @@ const TaskList = ({ token }) => {
                 <div className="flex space-x-4">
                   <button
                     onClick={() => handleEditClick(task)}
-                    className="py-2 px-4 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600 transition-all"
+                    className="p-2 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600 transition-all"
                   >
-                    Edit
+                    <FaPencilAlt /> {/* Edit Icon */}
                   </button>
                   <button
                     onClick={() => handleDeleteTask(task._id)}
-                    className="py-2 px-4 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition-all"
+                    className="p-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-all"
                   >
-                    Delete
+                    <FaTrash /> {/* Delete Icon */}
                   </button>
                 </div>
               </div>

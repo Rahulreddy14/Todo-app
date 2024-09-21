@@ -12,12 +12,12 @@ const NavBar = ({ token, setToken, username = "Username" }) => {
   };
 
   return (
-    <div className="flex flex-col w-1/5 h-screen bg-gray-900 text-white p-6">
+    <div className="flex flex-col w-1/5 h-screen bg-gray-200 text-black p-6">
       {/* Username Display */}
       <div className="flex items-center mb-8">
-        <div className="bg-gray-800 p-3 rounded-full">
+        <div className="bg-gray-300 p-3 rounded-full">
           {/* Initials or Profile Icon */}
-          <span className="text-lg font-bold text-white">{username.charAt(0).toUpperCase()}</span>
+          <span className="text-lg font-bold text-black">{username.charAt(0).toUpperCase()}</span>
         </div>
         <div className="ml-4">
           <span className="text-lg font-bold">{username}</span>
@@ -25,17 +25,17 @@ const NavBar = ({ token, setToken, username = "Username" }) => {
       </div>
 
       {/* Vertical Stacking of Sidebar Items */}
-      <nav className="flex flex-col space-y-4">  {/* Ensure vertical stacking with flex-col */}
-        <Link to="/tasks" className="text-sm hover:text-red-500 transition-all">
+      <nav className="flex flex-col space-y-4">
+        <Link to="/tasks" className="text-sm hover:text-green-500 transition-all">
           Today
         </Link>
-        <Link to="/upcoming" className="text-sm hover:text-red-500 transition-all">
+        <Link to="/upcoming" className="text-sm hover:text-green-500 transition-all">
           Upcoming
         </Link>
-        <Link to="/completed" className="text-sm hover:text-red-500 transition-all">
+        <Link to="/completed" className="text-sm hover:text-green-500 transition-all">
           Completed
         </Link>
-        <Link to="/projects" className="text-sm hover:text-red-500 transition-all">
+        <Link to="/projects" className="text-sm hover:text-green-500 transition-all">
           My Projects
         </Link>
       </nav>
@@ -44,7 +44,7 @@ const NavBar = ({ token, setToken, username = "Username" }) => {
       {token && (
         <button
           onClick={handleLogout}
-          className="mt-auto py-2 px-4 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 transition-all"
+          className="mt-auto py-2 px-4 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition-all"
         >
           Logout
         </button>

@@ -10,7 +10,7 @@ import './tailwind.css';
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token') || '');  // Load token from localStorage if available
-  const [username, setUsername] = useState("rahul5959red");  // Simulating username
+  const [username, setUsername] = useState("Rahul");  // Simulating username
 
   // Sync token with localStorage
   useEffect(() => {
