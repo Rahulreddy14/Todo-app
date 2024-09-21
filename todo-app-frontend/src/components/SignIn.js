@@ -12,7 +12,7 @@ const SignIn = ({ setToken }) => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post('/signin', { email, password });
+      const response = await axiosInstance.post('/users/signin', { email, password });
       setToken(response.data.token);
       localStorage.setItem('token', response.data.token);
       navigate('/tasks');
