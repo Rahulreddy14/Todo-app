@@ -12,7 +12,7 @@ const NavBar = ({ token, setToken, username = "Username" }) => {
   };
 
   return (
-    <div className="flex flex-col w-1/5 h-screen bg-gray-800 text-white p-6">  {/* Adjusted the color */}
+    <div className="flex flex-col w-1/5 h-screen bg-black text-white p-6">  {/* Adjusted the color */}
       {/* Username Display */}
       <div className="flex items-center mb-8">
         <div className="bg-gray-700 p-3 rounded-full">

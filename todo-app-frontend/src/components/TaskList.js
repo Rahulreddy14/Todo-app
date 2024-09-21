@@ -94,7 +94,7 @@ const TaskList = ({ token }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 p-6">
+    <div className="min-h-screen bg-gray p-6">
       <h1 className="text-4xl font-bold text-white mb-8 text-center">Your Tasks</h1>
 
       {/* Add Task Button */}
@@ -139,32 +139,65 @@ const TaskList = ({ token }) => {
             key={task._id}
             className="bg-gray-800 p-3 rounded-lg flex justify-between items-center text-sm text-white"
           >
-            <div className="flex items-center">
-              {/* Rounded Checkbox */}
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => toggleTaskCompletion(task._id, task.completed)}
-                className="h-6 w-6 rounded-full border-gray-400 focus:ring-green-500"
-              />
-              <span className={`ml-4 ${task.completed ? 'line-through text-gray-500' : ''}`}>
-                {task.title} - {task.description}
-              </span>
-            </div>
-            <div className="flex space-x-4">
-              <button
-                onClick={() => handleEditClick(task)}
-                className="p-2 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600 transition-all"
-              >
-                <FaPencilAlt />
-              </button>
-              <button
-                onClick={() => handleDeleteTask(task._id)}
-                className="p-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-all"
-              >
-                <FaTrash />
-              </button>
-            </div>
+            {editingTaskId === task._id ? (
+              <div className="flex flex-col w-full">
+                <input
+                  type="text"
+                  value={editTitle}
+                  onChange={(e) => setEditTitle(e.target.value)}
+                  className="w-full px-4 py-2 mb-2 bg-gray-700 text-white border border-green-500 rounded-md"
+                />
+                <input
+                  type="text"
+                  value={editDescription}
+                  onChange={(e) => setEditDescription(e.target.value)}
+                  className="w-full px-4 py-2 mb-4 bg-gray-700 text-white border border-green-500 rounded-md"
+                />
+                <div className="flex justify-end space-x-4">
+                  <button
+                    onClick={() => handleEditTask(task._id)}
+                    className="p-2 bg-green-600 text-white font-semibold rounded-md"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setEditingTaskId(null)}
+                    className="p-2 bg-gray-600 text-white font-semibold rounded-md"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="flex justify-between items-center w-full">
+                <div className="flex items-center">
+                  {/* Rounded Checkbox */}
+                  <input
+                    type="checkbox"
+                    checked={task.completed}
+                    onChange={() => toggleTaskCompletion(task._id, task.completed)}
+                    className="h-6 w-6 rounded-full border-gray-400 focus:ring-green-500"
+                  />
+                  <span className={`ml-4 ${task.completed ? 'line-through text-gray-500' : ''}`}>
+                    {task.title} - {task.description}
+                  </span>
+                </div>
+                <div className="flex space-x-4">
+                  <button
+                    onClick={() => handleEditClick(task)}
+                    className="p-2 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600 transition-all"
+                  >
+                    <FaPencilAlt /> {/* Edit Icon */}
+                  </button>
+                  <button
+                    onClick={() => handleDeleteTask(task._id)}
+                    className="p-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-all"
+                  >
+                    <FaTrash /> {/* Delete Icon */}
+                  </button>
+                </div>
+              </div>
+            )}
           </li>
         ))}
       </ul>
