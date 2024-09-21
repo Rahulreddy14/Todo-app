@@ -5,6 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        'highlight': ['Poppins', 'sans-serif'],   // For "Login to DoItNow"
+        'body': ['Nunito', 'sans-serif'],         // For the rest of the form
         custom: ['Montserrat', 'sans-serif'],  // Define your custom font
       },
       colors: {
