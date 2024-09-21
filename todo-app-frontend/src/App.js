@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import TaskList from './components/TaskList';
-import CreateTask from './components/CreateTask';
 import NavBar from './components/NavBar';
 import './App.css';
 import './tailwind.css';
