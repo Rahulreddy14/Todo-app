@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import TaskList from './components/TaskList';
@@ -33,7 +35,7 @@ const App = () => {
             {/* Protected Routes - Only render if the user is logged in */}
             <Route path="/tasks" element={token ? <TaskList token={token} /> : <SignIn setToken={setToken} />} />
             {/* Default route */}
-            <Route path="/" element={token ? <TaskList token={token} /> : <SignIn setToken={setToken} />} />
+            <Route path="*" element={token ? <TaskList token={token} /> : <LandingPage />} />
           </Routes>
         </div>
       </div>
