@@ -8,6 +8,9 @@ import TaskList from './components/TaskList';
 import NavBar from './components/NavBar';
 import './App.css';
 import './tailwind.css';
+import TimeBlocker from './components/TimeBlocker';
+import PomodoroTimer from './components/PomodoroTimer';
+
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token') || '');  // Load token from localStorage if available
@@ -34,6 +37,8 @@ const App = () => {
 
             {/* Protected Routes - Only render if the user is logged in */}
             <Route path="/tasks" element={token ? <TaskList token={token} /> : <SignIn setToken={setToken} />} />
+            <Route path="/time-blocking" element={token ? <TimeBlocker /> : <SignIn setToken={setToken} />} />
+  <Route path="/pomodoro" element={token ? <PomodoroTimer /> : <SignIn setToken={setToken} />} />
             {/* Default route */}
             <Route path="*" element={token ? <TaskList token={token} /> : <LandingPage />} />
           </Routes>

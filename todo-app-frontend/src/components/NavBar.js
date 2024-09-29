@@ -31,6 +31,9 @@ const NavBar = ({ token, setToken, username = "Username" }) => {
         <Link to="/tasks" className="text-sm hover:text-green-500 transition-all">
           Upcoming
         </Link>
+        <Link to="/time-blocking" className="text-white">Time Blocking</Link>
+        <Link to="/pomodoro" className="text-white">Pomodoro Timer</Link>
+
         <Link to="/tasks" className="text-sm hover:text-green-500 transition-all">
           Completed
         </Link>
