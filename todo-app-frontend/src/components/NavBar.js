@@ -5,6 +5,7 @@ const NavBar = ({ token, setToken, username = "Username" }) => {
   const navigate = useNavigate();
 
   // Handle Logout functionality
+  
   const handleLogout = () => {
     setToken('');  // Clear token from state
     localStorage.removeItem('token');  // Remove token from localStorage
@@ -31,7 +32,11 @@ const NavBar = ({ token, setToken, username = "Username" }) => {
         <Link to="/tasks" className="text-sm hover:text-green-500 transition-all">
           Upcoming
         </Link>
+
+        {/* navigation links for the pomodoro and Time Blocking */}
         <Link to="/time-blocking" className="text-white">Time Blocking</Link>
+
+
         <Link to="/pomodoro" className="text-white">Pomodoro Timer</Link>
 
         <Link to="/tasks" className="text-sm hover:text-green-500 transition-all">
