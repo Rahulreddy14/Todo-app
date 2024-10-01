@@ -33,7 +33,22 @@ Follow these steps to get the app running on your local machine.
 
 🌐 Live Demo
 
-https://todo-app-sigma-six-26.vercel.app/signin
+https://todo-app-sigma-six-26.vercel.app/
+
+
+### 🏠 Landing Page
+### 🔐 Sign in Page: Using JWT
+### 👤 Sign up Page
+### 🏡 Home Page
+
+
+## Features I am working on
+
+- 🚀 Time Blocking page
+- 🔒 Pomodoro Technique
+- 📱 Mobile responsiveness - Existing with some extent
+- 🔍 Advanced search functionality
+- 🌐 Multi-language support
 
 🧑‍💻 Contributing
 We welcome contributions! 🎉 Feel free to fork the repo and submit a pull request for new features, bug fixes, or improvements.
