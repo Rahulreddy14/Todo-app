@@ -37,9 +37,20 @@ https://todo-app-sigma-six-26.vercel.app/
 
 
 ### 🏠 Landing Page
+
+![landing Page ](./assets/landingpage.png)
+![landing Page ](./assets/landingpage1.png)
+
 ### 🔐 Sign in Page: Using JWT
+![Signin Page ](./assets/Signin.png)
 ### 👤 Sign up Page
+![Signup Page ](./assets/SignUp.png)
+
 ### 🏡 Home Page
+![Home Page ](./assets/HomePage.png)
+![Task Page ](./assets/AddTask.png)
+
+
 
 
 ## Features I am working on
