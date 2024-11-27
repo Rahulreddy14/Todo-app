@@ -1,4 +1,4 @@
-# 🚀 MERN Stack To-Do Application 🎯
+# 🚀Task Management Application 🎯
 
 Welcome to the **MERN Stack To-Do Application** — your ultimate productivity partner! This app helps you manage your daily tasks with ease, offering a sleek, minimal UI and a robust backend for task management. Built with the MERN stack (MongoDB, Express, React, Node.js), this app is fully authenticated using JWT, ensuring your tasks are safe and secure.
 
